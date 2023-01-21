@@ -1,3 +1,5 @@
+This is a fork of Python_Google_Translate by Skate1512. Libraries have been updated and speech recognition has been improved to detect the selected language.
+
 # Python Google Translate
 This program uses Google text to speech and speech recognition libraries. The input is then translated using googletrans library. Users can listen to the input and output. Input can also be provided using the mic symbol.
 
@@ -8,17 +10,10 @@ This program uses Google text to speech and speech recognition libraries. The in
 
 
 # Requirements
-Python 3
+Python 3.8
 requirements.txt file included.
 Use:
 ```pip install -r requirements.txt ```  
-    
-[Go here and download the relevant PyAudio file for your python3 version](https://www.lfd.uci.edu/~gohlke/pythonlibs/#pyaudio)  
-
-Example (Here python3.8): 
-```pip install PyAudio-0.2.11-cp38-cp38-win32.whl```   
-[Video Tutorial for PyAudio](https://www.youtube.com/watch?v=_wgOhzceMTw )  
-
 
 
 # Files
