@@ -2,7 +2,7 @@
 This program uses Google text to speech and speech recognition libraries. The input is then translated using googletrans library. Users can listen to the input and output. Input can also be provided using the mic symbol.
 
 <p align="center">
-  <img text="GUI Main Window" src="P_G_T.PNG">
+  <img text="GUI Main Window" src="docs/P_G_T.PNG">
 </p>
 
 

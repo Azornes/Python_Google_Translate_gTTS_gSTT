@@ -63,4 +63,5 @@ docs/_build/
 
 # Audio
 *.mp3
-.mp3
+
+.idea/

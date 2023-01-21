@@ -8,7 +8,6 @@ import gtts
 from playsound import playsound
 import os
 
-
 # Using Recognizer from speech recognition library
 r1 = sr.Recognizer()
 r1.dynamic_energy_threshold = False
@@ -25,7 +24,7 @@ class Main(QMainWindow, gui.Ui_MainWindow):
         self.setupUi(self)
         self.textEdit.clear()
         self.add_languages()
-        
+
         # Connecting functions with widgets.
         self.pushButton.clicked.connect(self.translate)
         self.pushButton_2.clicked.connect(self.clear)
@@ -57,14 +56,13 @@ class Main(QMainWindow, gui.Ui_MainWindow):
                     l1 = key
                     break
             # The language selected in dropdown menu is used as "lang" here
-            tts = gtts.gTTS(text, lang = l1)
+            tts = gtts.gTTS(text, lang=l1)
             tts.save("x.mp3")
             playsound("x.mp3")
         except Exception as e:
             print(e)
             self.error_message(e)
 
-            
     # Implementation of Speaker Icon for Input Text Widget.
     # It uses Google text-to-speech(gtts) Library to create the mp3 file and then plays it.
     # Old file is removed if it exists. 
@@ -81,7 +79,7 @@ class Main(QMainWindow, gui.Ui_MainWindow):
                     l2 = key
                     break
             # The language selected in dropdown menu is used as "lang" here
-            tts = gtts.gTTS(text, lang = l2)
+            tts = gtts.gTTS(text, lang=l2)
             tts.save("x.mp3")
             playsound("x.mp3")
         except Exception as e:
@@ -96,7 +94,7 @@ class Main(QMainWindow, gui.Ui_MainWindow):
             l2 = self.comboBox_2.currentText()
 
             trans = googletrans.Translator()
-            translate = trans.translate(text1, src = l1, dest = l2)
+            translate = trans.translate(text1, src=l1, dest=l2)
             self.textEdit_2.setText(translate.text)
         except Exception as e:
             self.error_message(e)
@@ -108,19 +106,24 @@ class Main(QMainWindow, gui.Ui_MainWindow):
         msg.setWindowTitle("Error")
         msg.setText(str(text))
         msg.exec_()
-        
-        
+
     # This is to detect audio using speech recognition library.
     # It is accessed using the Mic icon
     def audio_to_text(self):
+        l1 = self.comboBox.currentText()
+        for key, val in googletrans.LANGUAGES.items():
+            if val.capitalize() == l1:
+                l1 = key
+                break
+
         try:
             trans = googletrans.Translator()
             with sr.Microphone() as source:
                 print("Speak now:")
-                audio = r1.listen(source, timeout = 2)
+                audio = r1.listen(source, timeout=5)
 
                 try:
-                    get = r1.recognize_google(audio)
+                    get = r1.recognize_google(audio, language=l1)
                     t = trans.translate(get)
                     self.textEdit.setText(t.origin)
                 except Exception as e:
@@ -128,7 +131,6 @@ class Main(QMainWindow, gui.Ui_MainWindow):
         except Exception as e:
             self.error_message(e)
 
-            
     # This is to clear the text widgets
     def clear(self):
         self.textEdit_2.clear()
@@ -137,7 +139,6 @@ class Main(QMainWindow, gui.Ui_MainWindow):
             os.remove("x.mp3")
         except:
             pass
-        
 
     # This is the implementation of the Swap icon
     # It swaps the values in the dropdown menu for input and output text widgets

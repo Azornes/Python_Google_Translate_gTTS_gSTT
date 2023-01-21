@@ -96,7 +96,6 @@ class Main(QMainWindow, gui.Ui_MainWindow):
             with sr.Microphone() as source:
                 print("Speak now:")
                 audio = r1.listen(source, timeout = 2)
-
                 try:
                     get = r1.recognize_google(audio)
                     t = trans.translate(get)
